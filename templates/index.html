@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>T20 World Cup || First Innings Score Predictor</title>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='icon.gif') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+        <script src="https://kit.fontawesome.com/5f3f547070.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        <!-- Website Title -->
+    	<div class="container">
+            <h2 class='container-heading'><span class='heading_first'>First Innings Score Predictor for </span><span class="heading_second">T20 Men's Cricket World Cup</span></h2>
+            <div class='description'>
+    			<p>A Machine Learning Web App, Built with Flask.</p>
+    		</div>
+    	</div>
+
+        <!-- Prediction Area -->
+        <div class="prediction-area">
+
+            <!-- IPL Banner - 1 -->
+            <div class='ipl-banner-left'>
+
+                <div class="slider-frame">
+                    <div class="slide-images-up">
+
+                        <!-- Image-1 -->
+                        <div class="image-container">
+                            <img class="image-width" src="{{ url_for('static', filename='india.jpeg') }}" alt="India">
+                        </div>
+                        <!-- Image-2 -->
+                        <div class="image-container">
+                            <img class="image-width" src="{{ url_for('static', filename='australia.jpeg') }}" alt="Australia">
+                        </div>
+                        <!-- Image-3 -->
+                        <div class="image-container">
+                            <img class="image-width" src="{{ url_for('static', filename='south-africa.jpeg') }}" alt="South Africa">
+                        </div>
+                        <!-- Image-4 -->
+                        <div class="image-container">
+                            <img class="image-width" src="{{ url_for('static', filename='pakistan.jpeg') }}" alt="Pakistan">
+                        </div>
+                        <!-- Image-5 -->
+                        <div class="image-container">
+                            <img class="image-width" src="{{ url_for('static', filename='srilanka.png_large') }}" alt="Srilanka">
+                        </div>
+                        <!-- Image-6 -->
+                        <div class="image-container">
+                            <img class="image-width" src="{{ url_for('static', filename='england.webp') }}" alt="England">
+                        </div>
+                        <!-- Image-7 -->
+                        <div class="image-container">
+                            <img class="image-width" src="{{ url_for('static', filename='new-zeland.png') }}" alt="New Zealand">
+                        </div>
+                        <!-- Image-8 -->
+                        <div class="image-container">
+                            <img class="image-width" src="{{ url_for('static', filename='bangladesh.webp') }}" alt="Bangladesh">
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Prediction Form -->
+            <div class='div2'>
+                <form action="{{ url_for('predict') }}" method="POST">
+                    <!-- Batting Team Dropdown -->
+                    <select class="form-input align-center" name="batting-team">
+                        <option value="none">--- Select a Batting team ---</option>
+                        <option value="Australia">Australia</option>
+                        <option value="India">India</option>
+                        <option value="Bangladesh">Bangladesh</option>
+                        <option value="New Zealand">New Zealand</option>
+                        <option value="South Africa">South Africa</option>
+                        <option value="England">England</option>
+                        <option value="West Indies">West Indies</option>
+                        <option value="Afghanistan">Afghanistan</option>
+                        <option value="Pakistan">Pakistan</option>
+                        <option value="Sri Lanka">Sri Lanka</option>
+                    </select><br>
+
+                    <!-- Bowling Team Dropdown -->
+                    <select class="form-input align-center" name="bowling-team">
+                        <option value="none">--- Select a Bowling team ---</option>
+                        <option value="Australia">Australia</option>
+                        <option value="India">India</option>
+                        <option value="Bangladesh">Bangladesh</option>
+                        <option value="New Zealand">New Zealand</option>
+                        <option value="South Africa">South Africa</option>
+                        <option value="England">England</option>
+                        <option value="West Indies">West Indies</option>
+                        <option value="Afghanistan">Afghanistan</option>
+                        <option value="Pakistan">Pakistan</option>
+                        <option value="Sri Lanka">Sri Lanka</option>
+                    </select><br>
+
+                    <!-- Venue Dropdown -->
+                    <select class="form-input align-center" name="city">
+                        <option value="none">--- Select a Venue ---</option>
+                        <option value="Colombo">Colombo</option>
+                        <option value="Mirpur">Mirpur</option>
+                        <option value="Johannesburg">Johannesburg</option>
+                        <option value="Dubai">Dubai</option>
+                        <option value="Auckland">Auckland</option>
+                        <option value="Cape Town">Cape Town</option>
+                        <option value="London">London</option>
+                        <option value="Pallekele">Pallekele</option>
+                        <option value="Barbados">Barbados</option>
+                        <option value="Sydney">Sydney</option>
+                        <option value="Melbourne">Melbourne</option>
+                        <option value="Durban">Durban</option>
+                        <option value="St Lucia">St Lucia</option>
+                        <option value="Wellington">Wellington</option>
+                        <option value="SLauderhill">SLauderhill</option>
+                        <option value="Hamilton">Hamilton</option>
+                        <option value="Centurion">Centurion</option>
+                        <option value="Manchester">Manchester</option>
+                        <option value="Abu Dhabi">Abu Dhabi</option>
+                        <option value="Nottingham">Nottingham</option>
+                        <option value="Southampton">Southampton</option>
+                        <option value="Mount Maunganui">Mount Maunganui</option>
+                        <option value="Chittagong">Chittagong</option>
+                        <option value="Kolkata">Kolkata</option>
+                        <option value="Lahore">Lahore</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="Nagpur">Nagpur</option>
+                        <option value="Chandigarh">Chandigarh</option>
+                        <option value="Adelaide">Adelaide</option>
+                        <option value="Bangalore">Bangalore</option>
+                        <option value="St Kitts">St Kitts</option>
+                        <option value="Cardiff">Cardiff</option>
+                        <option value="Christchurch">Christchurch</option>
+                        <option value="Trinidad">Trinidad</option>
+                    </select><br>
+
+                    <input class="form-input" type="text" name="overs" placeholder="Overs (>= 5) eg. 7"><br>
+                    <input class="form-input" type="text" name="runs" placeholder="Runs eg. 64"><br>
+                    <input class="form-input" type="text" name="wickets" placeholder="Wickets eg. 4"><br>
+                    <input class="form-input" type="text" name="runs_in_prev_5" placeholder="Runs scored in previous 5 Overs eg. 42"><br>
+                    
+			<input type="submit" class="myButton" value="Predict Score">
+        	</form> 
+            </div>
+
+            <!-- IPL Banner - 2 -->
+            <div class='ipl-banner-right'>
+
+                <div class="slider-frame">
+                    <div class="slide-images-down">
+
+                        <!-- Image-1 -->
+                        <div class="image-container">
+                            <img class="image-width" src="{{ url_for('static', filename='india.jpeg') }}" alt="India">
+                        </div>
+                        <!-- Image-2 -->
+                        <div class="image-container">
+                            <img class="image-width" src="{{ url_for('static', filename='Australia.jpeg') }}" alt="Australia">
+                        </div>
+                        <!-- Image-3 -->
+                        <div class="image-container">
+                            <img class="image-width" src="{{ url_for('static', filename='south-africa.jpeg') }}" alt="South Africa">
+                        </div>
+                        <!-- Image-4 -->
+                        <div class="image-container">
+                            <img class="image-width" src="{{ url_for('static', filename='pakistan.jpeg') }}" alt="Pakistan">
+                        </div>
+                        <!-- Image-5 -->
+                        <div class="image-container">
+                            <img class="image-width" src="{{ url_for('static', filename='srilanka.png_large') }}" alt="Srilanka">
+                        </div>
+                        <!-- Image-6 -->
+                        <div class="image-container">
+                            <img class="image-width" src="{{ url_for('static', filename='england.webp') }}" alt="England">
+                        </div>
+                        <!-- Image-7 -->
+                        <div class="image-container">
+                            <img class="image-width" src="{{ url_for('static', filename='new-zeland.png') }}" alt="New Zealand">
+                        </div>
+                        <!-- Image-8 -->
+                        <div class="image-container">
+                            <img class="image-width" src="{{ url_for('static', filename='bangladesh.webp') }}" alt="Bangladesh">
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+       <div class='footer'>
+           <div class="contact">
+               <a target="_blank" href="https://github.com/AviG10"><i class="fab fa-github fa-lg contact-icon"></i></a>
+               <a target="_blank" href="https://www.linkedin.com/in/avig10/"><i class="fab fa-linkedin fa-lg contact-icon"></i></a>
+           </div>
+           <p class='footer-description'>Made with ❤️ by Avijit Ghosh</p>
+       </div>
+
+    </body>
+</html>
